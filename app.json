@@ -22,7 +22,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kasun.myapp"
+    },
+    "android": {
+        "package": "com.kasun.myapp"
     }
   }
 }

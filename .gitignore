@@ -12,3 +12,8 @@ web-report/
 
 # macOS
 .DS_Store
+
+#my_app
+#node_modules/**/*
+.expo/**/*
+#.DS_Store
