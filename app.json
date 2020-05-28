@@ -23,10 +23,19 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kasun.myapp"
+      "bundleIdentifier": "com.kasun.myapp",
+      "config": {
+          "googleMapsApiKey": "AIzaSyCAhLrAbk1kU1NdRiwmJqlVaMGG1E0ri2s"
+      }
     },
     "android": {
-        "package": "com.kasun.myapp"
+        "package": "com.kasun.myapp",
+        "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"],
+        "config": {
+            "googleMaps": {
+                "apiKey": "AIzaSyCAhLrAbk1kU1NdRiwmJqlVaMGG1E0ri2s"
+            }
+        }
     }
   }
 }
