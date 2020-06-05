@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -10,7 +10,10 @@ const styles = StyleSheet.create({
     }
 });
 
-class LoginScreen extends Component{
+class SplashScreen  extends Component{
+    
+    static navigationOptions = ({ navigation, screenProps }) => ({});
+    
     constructor(props){
         super(props);
         //this.state = {};
@@ -18,18 +21,16 @@ class LoginScreen extends Component{
     }
     
     render(){
+        if (this.state.isLoading) {
+            //return (<View style={styles.container}></View>);
+        }
+        
         return (
             <View style={styles.container}>
-                <Text>LoginScreen</Text>
-                <Button
-                    title="Click"
-                    onPress={() =>
-                        this.props.navigation.navigate('Friends', {})
-                    }
-                />
+                <Text>SplashScreen</Text>
             </View>
         );
     }
 }
 
-export default LoginScreen;
+export default SplashScreen;

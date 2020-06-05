@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     }
 });
 
-class LoginScreen extends Component{
+class DefaultScreen extends Component{
     constructor(props){
         super(props);
         //this.state = {};
@@ -20,11 +20,11 @@ class LoginScreen extends Component{
     render(){
         return (
             <View style={styles.container}>
-                <Text>LoginScreen</Text>
+                <Text>DefaultScreen</Text>
                 <Button
                     title="Click"
                     onPress={() =>
-                        this.props.navigation.navigate('Friends', {})
+                        this.props.navigation.navigate('WelcomeScreen', {})
                     }
                 />
             </View>
@@ -32,4 +32,4 @@ class LoginScreen extends Component{
     }
 }
 
-export default LoginScreen;
+export default DefaultScreen;

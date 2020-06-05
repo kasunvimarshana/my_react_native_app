@@ -1,16 +1,35 @@
-import React from 'react';
-import { Component } from 'react';
-import { StyleSheet, Text, View, Dimensions, Alert, Platform, SafeAreaView } from 'react-native';
-import { ThemeProvider, Button } from 'react-native-elements';
-import Constants from 'expo-constants';
-import * as Permissions from 'expo-permissions';
-import * as Location from 'expo-location';
-import moment from 'moment';
-import { MapView } from 'expo';
-import MapView, { Marker } from 'react-native-maps';
+import React, { Component } from 'react';
+import { StyleSheet, View, Text, Button } from 'react-native';
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+});
 
 class AttendanceScreen extends Component{
-    //
+    constructor(props){
+        super(props);
+        //this.state = {};
+        //this.myFunction = this.myFunction.bind(this);
+    }
+    
+    render(){
+        return (
+            <View style={styles.container}>
+                <Text>AttendanceScreen</Text>
+                <Button
+                    title="Click"
+                    onPress={() =>
+                        this.props.navigation.navigate('DefaultScreen', {})
+                    }
+                />
+            </View>
+        );
+    }
 }
 
 export default AttendanceScreen;

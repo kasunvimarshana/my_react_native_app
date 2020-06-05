@@ -1,0 +1,6 @@
+npm install --save-dev jetifier
+expo install expo-keep-awake
+expo install react-native-maps
+expo install expo-location
+expo install expo-permissions
+expo install expo-constants

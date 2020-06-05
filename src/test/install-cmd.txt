@@ -1,0 +1,25 @@
+npm install --save-dev jetifier
+yarn add react-native-maps -E
+/*
+https://github.com/react-native-community/react-native-maps/blob/master/docs/installation.md
+*/
+yarn add react-native-location
+/*
+https://www.npmjs.com/package/react-native-location
+*/
+yarn add react-native-permissions
+yarn add react-navigation
+yarn add react-native-navigation
+yarn add axios
+yarn add lodash
+yarn add underscore
+yarn add moment
+yarn add react-native-elements
+yarn add redux
+yarn add react-redux
+yarn add redux-thunk
+yarn add react-native-geolocation-service
+
+
+include ':react-native-location'
+project(':react-native-location').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-location/android')

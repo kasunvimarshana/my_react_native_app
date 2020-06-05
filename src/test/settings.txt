@@ -1,0 +1,139 @@
+<<<===================================================================================================>>>
+https://reactnative.dev/docs/signed-apk-android
+<<<===================================================================================================>>>
+
+<<<===================================================================================================>>>
+app.json
+========
+"ios": {
+    "supportsTablet": true,
+    "bundleIdentifier": "com.kasun.myapp"
+},
+"android": {
+    "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+    ],
+    "config": {
+        "googleMaps": {
+            "apiKey": "AIzaSyCAhLrAbk1kU1NdRiwmJqlVaMGG1E0ri2s"
+        }
+    },
+    "package": "com.kasun.myapp"
+}
+<<<===================================================================================================>>>
+
+<<<===================================================================================================>>>
+cmd
+===
+[cmd >> expo eject]
+<<<===================================================================================================>>>
+
+<<<===================================================================================================>>>
+[cmd >> keytool -genkeypair -v -keystore my-upload-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000]
+
+[cmd >> keytool -genkey -v -keystore my-upload-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000]
+<<<===================================================================================================>>>
+
+<<<===================================================================================================>>>
+android\gradle.properties
+=========================
+android.useAndroidX=true
+android.enableJetifier=true
+
+MYAPP_UPLOAD_STORE_FILE=my-upload-key.keystore
+MYAPP_UPLOAD_KEY_ALIAS=my-key-alias
+MYAPP_UPLOAD_STORE_PASSWORD=kasunvimarshana
+MYAPP_UPLOAD_KEY_PASSWORD=kasunvimarshana
+<<<===================================================================================================>>>
+
+<<<===================================================================================================>>>
+android\build.gradle
+====================
+ext {
+    buildToolsVersion = "28.0.3"
+    //minSdkVersion = 21
+    compileSdkVersion = 28
+    targetSdkVersion = 28
+    supportLibVersion = "27.1.0" //https://mvnrepository.com/artifact/com.android.support/appcompat-v7
+    playServicesVersion = "17.0.0" // or find latest version //https://mvnrepository.com/artifact/com.google.android.gms/play-services-maps
+    androidMapsUtilsVersion = "0.5+" //https://mvnrepository.com/artifact/com.google.maps.android/android-maps-utils
+    googlePlayServicesVersion   = "17.0.0"
+    minSdkVersion               = 16
+}
+
+ext {
+    buildToolsVersion = "28.0.3"
+    minSdkVersion = 16
+    compileSdkVersion = 28
+    targetSdkVersion = 28
+    //----->>>>>The lines below<<<<<<<-----------
+    supportLibVersion = "28.0.3"
+    googlePlayServicesVersion = "16.1.0"
+    androidMapsUtilsVersion = "0.5+"
+}
+<<<===================================================================================================>>>
+
+<<<===================================================================================================>>>
+android\app\build.gradle
+========================
+signingConfigs {
+    release {
+        if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+            storeFile file(MYAPP_UPLOAD_STORE_FILE)
+            storePassword MYAPP_UPLOAD_STORE_PASSWORD
+            keyAlias MYAPP_UPLOAD_KEY_ALIAS
+            keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+        }
+    }
+    debug {
+        storeFile file('debug.keystore')
+        storePassword 'android'
+        keyAlias 'androiddebugkey'
+        keyPassword 'android'
+    }
+}
+
+buildTypes {
+    debug {
+        signingConfig signingConfigs.debug
+    }
+    release {
+        // Caution! In production, you need to generate your own keystore file.
+        // see https://facebook.github.io/react-native/docs/signed-apk-android.
+        //signingConfig signingConfigs.debug
+        signingConfig signingConfigs.release
+        minifyEnabled enableProguardInReleaseBuilds
+        proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+    }
+}
+<<<===================================================================================================>>>
+
+<<<===================================================================================================>>>
+cmd
+===
+[cmd >> expo publish]
+[cmd >> cd android]
+//[cmd >> ./gradlew bundleRelease] => build .aab file
+
+[cmd >> ./gradlew assembleRelease] => build .apk file
+[cmd >> ./gradlew assembleDebug]
+<<<===================================================================================================>>>
+
+<<<===================================================================================================>>>
+//solve this React Native Android build error (com.android.ide.common.process.ProcessException: Failed to execute aapt)
+cmd
+===
+[cmd >> cd ..]
+[cmd >> cd 
+    rm -rf android/app/src/main/res/drawable-*
+
+    react-native bundle --platform android --dev false \
+    --entry-file index.js \
+
+    --bundle-output android/app/src/main/assets/index.android.bundle \
+
+    --assets-dest android/app/build/intermediates/res/merged/release/
+]
+[cmd >> cd cd android && ./gradlew assembleRelease]
+<<<===================================================================================================>>>

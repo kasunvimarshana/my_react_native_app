@@ -1,0 +1,70 @@
+<!======================================================================================!>
+const MyComponent = React.memo(function MyComponent(props) {
+  /* render using props */
+});
+<!======================================================================================!>
+
+<!======================================================================================!>
+function MyComponent(props) {
+  /* render using props */
+}
+function areEqual(prevProps, nextProps) {
+  /*
+  return true if passing nextProps to render would return
+  the same result as passing prevProps to render,
+  otherwise return false
+  */
+}
+export default React.memo(MyComponent, areEqual);
+<!======================================================================================!>
+
+<!======================================================================================!>
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.inputRef = React.createRef();
+  }
+
+  render() {
+    return <input type="text" ref={this.inputRef} />;
+  }
+
+  componentDidMount() {
+    this.inputRef.current.focus();
+  }
+}
+<!======================================================================================!>
+
+<!======================================================================================!>
+const FancyButton = React.forwardRef((props, ref) => (
+  <button ref={ref} className="FancyButton">
+    {props.children}
+  </button>
+));
+
+// You can now get a ref directly to the DOM button:
+const ref = React.createRef();
+<FancyButton ref={ref}>Click me!</FancyButton>;
+<!======================================================================================!>
+
+<!======================================================================================!>
+// This component is loaded dynamically
+const SomeComponent = React.lazy(() => import('./SomeComponent'));
+<!======================================================================================!>
+
+<!======================================================================================!>
+// This component is loaded dynamically
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
+
+function MyComponent() {
+  return (
+    // Displays <Spinner> until OtherComponent loads
+    <React.Suspense fallback={<Spinner />}>
+      <div>
+        <OtherComponent />
+      </div>
+    </React.Suspense>
+  );
+}
+<!======================================================================================!>

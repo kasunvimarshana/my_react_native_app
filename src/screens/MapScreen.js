@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     }
 });
 
-class LoginScreen extends Component{
+class MapScreen extends Component{
     constructor(props){
         super(props);
         //this.state = {};
@@ -20,7 +20,7 @@ class LoginScreen extends Component{
     render(){
         return (
             <View style={styles.container}>
-                <Text>LoginScreen</Text>
+                <Text>MapScreen</Text>
                 <Button
                     title="Click"
                     onPress={() =>
@@ -32,4 +32,4 @@ class LoginScreen extends Component{
     }
 }
 
-export default LoginScreen;
+export default MapScreen;
