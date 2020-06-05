@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
-import { TapGestureHandler } from 'react-native-gesture-handler';
+import { StyleSheet, View } from 'react-native';
+import { State, TapGestureHandler } from 'react-native-gesture-handler';
+import Animated, { Value, cond, eq } from 'react-native-reanimated';
+import { mix, onGestureEvent, withTransition } from "react-native-redash";
+
 import MyButton from '../components/MyButton';
 
 const styles = StyleSheet.create({
@@ -13,6 +16,11 @@ const styles = StyleSheet.create({
 });
 
 class AttendanceScreen extends Component{
+    
+    const state = new Value( State.UNDETERMINED );
+    const gestureHandler = onGestureEvent({ state });
+    const progress = withTransition();
+    
     constructor(props){
         super(props);
         //this.state = {};
@@ -22,7 +30,11 @@ class AttendanceScreen extends Component{
     render(){
         return (
             <View style={styles.container}>
-                <MyButton/>
+                <TapGestureHandler {...gestureHandler}>
+                    <Animated.View>
+                        <MyButton/>
+                    </Animated.View>
+                </TapGestureHandler>
             </View>
         );
     }
