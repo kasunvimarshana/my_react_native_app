@@ -24,7 +24,7 @@ class WelcomeScreen extends Component{
                 <Button
                     title="Click"
                     onPress={() =>
-                        this.props.navigation.navigate('DefaultScreen', {})
+                        this.props.navigation.navigate('AttendanceScreen', {})
                     }
                 />
             </View>

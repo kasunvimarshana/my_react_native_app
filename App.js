@@ -2,10 +2,6 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-//import { NavigationContainer } from '@react-navigation/native';
-//import { createStackNavigator } from '@react-navigation/stack';
-
-//import { DefaultScreen, WelcomeScreen, LoginScreen, AttendanceScreen, MapScreen } from './src/screens';
 import MainNavigation from './src/navigations/MainNavigation';
 
 const styles = StyleSheet.create({

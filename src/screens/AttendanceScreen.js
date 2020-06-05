@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
+import { TapGestureHandler } from 'react-native-gesture-handler';
+import MyButton from '../components/MyButton';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#e8edff',
         alignItems: 'center',
         justifyContent: 'center'
     }
@@ -20,13 +22,7 @@ class AttendanceScreen extends Component{
     render(){
         return (
             <View style={styles.container}>
-                <Text>AttendanceScreen</Text>
-                <Button
-                    title="Click"
-                    onPress={() =>
-                        this.props.navigation.navigate('DefaultScreen', {})
-                    }
-                />
+                <MyButton/>
             </View>
         );
     }

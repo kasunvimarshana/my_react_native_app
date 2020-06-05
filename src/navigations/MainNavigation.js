@@ -3,7 +3,13 @@ import React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator, TransitionSpecs, HeaderStyleInterpolators } from '@react-navigation/stack';
+import { 
+    createStackNavigator, 
+    TransitionPresets, 
+    CardStyleInterpolators,
+    TransitionSpecs, 
+    HeaderStyleInterpolators
+} from '@react-navigation/stack';
 
 import { DefaultScreen, WelcomeScreen, LoginScreen, AttendanceScreen, MapScreen } from '../screens';
 
@@ -15,7 +21,7 @@ const myTransitionSpecConfig = {
         stiffness: 1000,
         damping: 500,
         mass: 3,
-        overshootClamping: true,
+        overshootClamping: false,
         restDisplacementThreshold: 0.01,
         restSpeedThreshold: 0.01
     }
@@ -36,6 +42,8 @@ function MainNavigation(){
             <Stack.Navigator
                 screenOptions = {
                     ({ route, navigation }) => ({
+                        gestureEnabled: false,
+                        gestureDirection: 'horizontal',
                         headerTitleAlign: 'center',
                         headerStyle: {
                             backgroundColor: '#00ff00'
@@ -43,12 +51,20 @@ function MainNavigation(){
                         headerTitleStyle: { 
                             color: '#ff0000' 
                         },
-                        headerTintColor: '#0000ff'
+                        headerTintColor: '#0000ff',
+                        //transitionSpec: {
+                        //    open: myTransitionSpecConfig,
+                        //    close: myTransitionSpecConfig
+                        //},
+        
+                        //cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        
+                        ...TransitionPresets.SlideFromRightIOS
                     })
                 }
                 mode = 'card'
-                headerMode = 'screen'
-                initialRouteName = 'WelcomeScreen'
+                headerMode = 'float'
+                initialRouteName = 'AttendanceScreen'
             >
                 <Stack.Screen 
                     name = 'DefaultScreen' 
@@ -73,7 +89,21 @@ function MainNavigation(){
                     initialParams = {{}}
                     options = {
                         { 
-                            title: 'My WelcomeScreen', 
+                            title: 'WelcomeScreen', 
+                            animationTypeForReplace: 'push',
+                            headerShown: false,
+                            headerTransparent: true,
+                            ...myTransition
+                        }
+                    }
+                />
+                <Stack.Screen 
+                    name = 'AttendanceScreen' 
+                    component = {AttendanceScreen}
+                    initialParams = {{}}
+                    options = {
+                        { 
+                            title: 'AttendanceScreen', 
                             animationTypeForReplace: 'push',
                             headerShown: false,
                             headerTransparent: true,
