@@ -15,11 +15,14 @@ const styles = StyleSheet.create({
     }
 });
 
+const state = new Value(State.UNDETERMINED);
+const gestureHandler = onGestureEvent({ state });
+const isActive = eq(state, State.BEGAN);
+const duration = cond(isActive, 2000, 250);
+const progress = withTransition(isActive, { duration });
+const scale = mix(progress, 1, 1.2);
+
 class AttendanceScreen extends Component{
-    
-    const state = new Value( State.UNDETERMINED );
-    const gestureHandler = onGestureEvent({ state });
-    const progress = withTransition();
     
     constructor(props){
         super(props);
@@ -31,8 +34,8 @@ class AttendanceScreen extends Component{
         return (
             <View style={styles.container}>
                 <TapGestureHandler {...gestureHandler}>
-                    <Animated.View>
-                        <MyButton/>
+                    <Animated.View style={{ transform: [{ scale }] }}>
+                        <MyButton {...{ progress }} />
                     </Animated.View>
                 </TapGestureHandler>
             </View>
